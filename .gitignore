@@ -1,0 +1,14 @@
+# Python cache
+__pycache__/
+.pytest_cache/
+.coverage
+*.pyc
+.DS_Store
+.venv/
+
+# Local configuration
+.env
+.envrc
+.history
+.localdev/
+*.sensitive
