@@ -19,6 +19,7 @@ Whether you're evaluating open-source libraries, conducting competitive analysis
 1. **Llama Stack Server**: Make sure you have Llama Stack running on `http://localhost:8321`
 2. **Python 3.8+**: Required for running the agent
 3. **GitHub Token** (Optional): For increased API rate limits
+4. [Frontend UI repo](https://github.com/anujsingla/llama-stack-ui-demo)
 
 ## Quick Start
 
