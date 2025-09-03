@@ -66,6 +66,10 @@ podman run -it \
 # With venv
 - llama stack build --distro starter --image-type venv --image-name distro
 - llama stack run /Users/opavale/.llama/distributions/starter/starter-run.yaml --image-type venv --image-name distro --env OLLAMA_URL=http://127.0.0.1:11434
+
+# another way
+llama stack build --distro starter --image-type venv --image-name distro
+llama stack run ./run.yaml --image-type venv --image-name distro --env OLLAMA_URL=http://127.0.0.1:11434
 ```
 
 ## Usage
