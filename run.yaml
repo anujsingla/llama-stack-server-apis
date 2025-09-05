@@ -161,6 +161,7 @@ providers:
       provider_type: inline::rag-runtime
     - provider_id: model-context-protocol
       provider_type: remote::model-context-protocol
+      config: {}
   batches:
     - provider_id: reference
       provider_type: inline::reference
@@ -191,5 +192,13 @@ tool_groups:
     provider_id: tavily-search
   - toolgroup_id: builtin::rag
     provider_id: rag-runtime
+  # - toolgroup_id: mcp::deepwiki
+  #   provider_id: model-context-protocol
+  #   mcp_endpoint:
+  #     uri: "https://mcp.deepwiki.com/sse"
+  - toolgroup_id: mcp::cloudflaredocs
+    provider_id: model-context-protocol
+    mcp_endpoint:
+      uri: "https://docs.mcp.cloudflare.com/sse"
 server:
   port: 8321

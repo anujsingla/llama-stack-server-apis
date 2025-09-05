@@ -37,15 +37,14 @@ class GitHubProjectAnalyst:
         self.client = LlamaStackClient(base_url=llama_stack_url)
         
         # Get available models
-        models = self.client.models.list()
-        self.llm = next(m for m in models if m.model_type == "llm" and m.provider_id == "ollama")
-        self.model_id = self.llm.identifier
+        # models = self.client.models.list()
+        # print(f"Models: {models}")
 
-        available_shields = [shield.identifier for shield in self.client.shields.list()]
-        if not available_shields:
-            print("No available shields. Disabling safety.")
-        else:
-            print(f"Available shields found: {available_shields}")
+        # available_shields = [shield.identifier for shield in self.client.shields.list()]
+        # if not available_shields:
+        #     print("No available shields. Disabling safety.")
+        # else:
+        #     print(f"Available shields found: {available_shields}")
         
         # Initialize agent with GitHub analysis instructions and tools
         tools_list = [
@@ -55,7 +54,8 @@ class GitHubProjectAnalyst:
             get_repository_issues,
             get_repository_pulls,
             get_repository_releases,
-            search_repositories
+            search_repositories,
+            # "mcp::cloudflaredocs"
         ]
         
         # Add web search tool if Tavily is configured
@@ -64,13 +64,12 @@ class GitHubProjectAnalyst:
         
         self.agent = Agent(
             client=self.client,
-            model=self.model_id,
+            model="ollama/llama3.2:3b",
             instructions=GITHUB_AGENT_INSTRUCTIONS,
             tools=tools_list,
             sampling_params={
                 "strategy": {"type": "top_p", "temperature": 1.0, "top_p": 0.9},
-            },
-            
+            },            
         )
         
         github_token_status = "Authenticated" if os.getenv("GITHUB_TOKEN") else "Public (Rate Limited)"
@@ -79,7 +78,6 @@ class GitHubProjectAnalyst:
         total_tools = len(tools_list)
         
         print("GitHub Project Analyst Agent Initialized")
-        print(f"Model: {self.model_id}")
         print(f"GitHub API: {github_token_status}")
         print(f"Web Search: {web_search_status}")
         print(f"Available Tools: {total_tools} tools")
