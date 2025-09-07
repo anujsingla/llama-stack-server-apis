@@ -183,6 +183,9 @@ shields:
   - shield_id: code-scanner
     provider_id: ${env.CODE_SCANNER_MODEL:+code-scanner}
     provider_shield_id: ${env.CODE_SCANNER_MODEL:=}
+  - shield_id: content_safety
+    provider_id: llama-guard
+    provider_shield_id: ollama/llama-guard3:8b
 vector_dbs: []
 datasets: []
 scoring_fns: []

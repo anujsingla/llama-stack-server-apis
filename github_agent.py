@@ -35,6 +35,15 @@ class GitHubProjectAnalyst:
             llama_stack_url: URL of the Llama Stack server
         """
         self.client = LlamaStackClient(base_url=llama_stack_url)
+
+        # print(f"Client: {self.client.tool_runtime.list_tools()}")
+
+        # Register MCP tool group
+        # self.client.toolgroups.register(
+        #     toolgroup_id="mcp::cloudflaredocs1",
+        #     provider_id="model-context-protocol",
+        #     mcp_endpoint={"uri": "https://docs.mcp.cloudflare.com/mcp"},
+        # )
         
         # Get available models
         # models = self.client.models.list()
@@ -67,6 +76,8 @@ class GitHubProjectAnalyst:
             model="ollama/llama3.2:3b",
             instructions=GITHUB_AGENT_INSTRUCTIONS,
             tools=tools_list,
+            # input_shields=["content_safety"],
+            # output_shields=["content_safety"],
             sampling_params={
                 "strategy": {"type": "top_p", "temperature": 1.0, "top_p": 0.9},
             },            
